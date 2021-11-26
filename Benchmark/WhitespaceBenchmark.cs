@@ -13,7 +13,8 @@ namespace Benchmark
     [MemoryDiagnoser]
     public class WhitespaceBenchmark
     {
-        private const string Spaces = " a  b   c     d     e      ";
+        private const string Spaces2 = " a  b   c     d     e      ";
+        private const string Spaces = " aaaaaaaaaaaaaaaaaa  bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb   cccccccc    deeeeeeeeeeee     eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee      ";
 
         [Benchmark]
         public string RegexImplementation()
@@ -24,7 +25,7 @@ namespace Benchmark
         [Benchmark]
         public string CustomImplementation()
         {
-            return RegexSpeedup.CustomRemoveAdditionalWhiteSpaceRegex.RemoveAdditionalWhiteSpace(Spaces);
+            return CustomRemoveAdditionalWhiteSpaceRegex.RemoveAdditionalWhiteSpace(Spaces);
         }
         
         [Benchmark]
