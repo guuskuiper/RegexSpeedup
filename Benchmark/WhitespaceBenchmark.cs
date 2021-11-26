@@ -21,10 +21,10 @@ namespace Benchmark
             return RemoveAdditionalWhiteSpaceRegex.ReplaceWhiteSpaces(Spaces);
         }
         
-        //[Benchmark]
+        [Benchmark]
         public string CustomImplementation()
         {
-            throw new NotImplementedException();
+            return RegexSpeedup.CustomRemoveAdditionalWhiteSpaceRegex.RemoveAdditionalWhiteSpace(Spaces);
         }
         
         [Benchmark]
