@@ -21,7 +21,7 @@ namespace Benchmark
             return RemoveAdditionalWhiteSpaceRegex.ReplaceWhiteSpaces(Spaces);
         }
         
-        [Benchmark]
+        //[Benchmark]
         public string CustomImplementation()
         {
             throw new NotImplementedException();
