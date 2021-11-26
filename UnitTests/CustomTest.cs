@@ -1,15 +1,13 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RegexSpeedup;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace UnitTests
 {
-    //[TestClass]
+    [TestClass]
     public class CustomRemoveWhiteSpaceTest : RemoveWhiteSpaceBaseTest
     {
         protected override string RemoveAdditionalWhiteSpace(string input)
         {
-            throw new NotImplementedException();
+            return RegexSpeedup.CustomRemoveAdditionalWhiteSpaceRegex.RemoveAdditionalWhiteSpace(input);
         }
     }
 }
