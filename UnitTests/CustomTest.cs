@@ -11,6 +11,5 @@ namespace UnitTests
         {
             throw new NotImplementedException();
         }
-
     }
 }
