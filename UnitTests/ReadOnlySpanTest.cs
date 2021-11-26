@@ -4,13 +4,12 @@ using RegexSpeedup;
 
 namespace UnitTests
 {
-    //[TestClass]
-    public class CustomRemoveWhiteSpaceTest : RemoveWhiteSpaceBaseTest
+    [TestClass]
+    public class ReadOnlySpanTest : RemoveWhiteSpaceBaseTest
     {
         protected override string RemoveAdditionalWhiteSpace(string input)
         {
-            throw new NotImplementedException();
+            return RemoveAdditionalWhiteSpaceSpan.ReplaceWithSingleWhiteSpace(input).ToString();
         }
-
     }
 }
