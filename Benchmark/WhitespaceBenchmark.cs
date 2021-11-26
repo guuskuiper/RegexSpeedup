@@ -39,5 +39,11 @@ namespace Benchmark
             return RemoveAdditionalWhiteSpaceSpan
                 .ReplaceWithSingleWhiteSpaceAllocFree(Spaces.ToCharArray()).ToString();
         }
+
+        [Benchmark]
+        public string UseCharArray()
+        {
+            return CharArray.RemoveAdditionalWhiteSpace(Spaces);
+        }
     }
 }

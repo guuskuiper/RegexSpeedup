@@ -19,6 +19,7 @@ namespace UnitTests
         [TestMethod] public void CharSpaces() => Check("a", "a  ");
         [TestMethod] public void SpacesCharSpaces() => Check("a", "  a   ");
         [TestMethod] public void CharSpacesChar() => Check("a b", "a     b");
+        [TestMethod] public void CharTabsChar() => Check("a b", "a\t\t\tb");
         [TestMethod] public void Many() => Check("a b c d", " a   b    c  \t\t      d   ");
         [TestMethod] public void OverlappingDoubleSpace() => Check("abcd efghij", "abcd  efghij");
 
