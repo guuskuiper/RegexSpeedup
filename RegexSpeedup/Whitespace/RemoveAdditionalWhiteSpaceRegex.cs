@@ -1,7 +1,6 @@
-﻿using System;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 
-namespace RegexSpeedup
+namespace RegexSpeedup.Whitespace
 {
     public static class RemoveAdditionalWhiteSpaceRegex
     {

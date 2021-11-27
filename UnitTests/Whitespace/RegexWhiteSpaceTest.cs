@@ -1,8 +1,7 @@
-using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RegexSpeedup;
+using RegexSpeedup.Whitespace;
 
-namespace UnitTests
+namespace UnitTests.Whitespace
 {
     [TestClass]
     public class RemoveAdditionalWhiteSpaceTest : RemoveWhiteSpaceBaseTest

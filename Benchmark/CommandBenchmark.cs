@@ -7,23 +7,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RegexSpeedup;
-using RegexSpeedup.Whitespace;
+using RegexSpeedup.Command;
 
 namespace Benchmark
 {
     [MemoryDiagnoser]
-    public class WhitespaceBenchmark
+    public class CommandBenchmark
     {
-        private const string Spaces = " a  b   c     d     e      ";
+        private const string Line = "N123450  #set AcommandName( 1 ; 3.14  ; R4)# ; Sets a command value";
 
         [Benchmark]
-        public string RegexImplementation()
+        public bool RegexImplementation()
         {
-            return RemoveAdditionalWhiteSpaceRegex.ReplaceWhiteSpaces(Spaces);
+            return CommandRegex.TryParseCommand(Line, out int lineNumber, out string command, out string parameters, out string comment);
         }
         
         //[Benchmark]
-        public string CustomImplementation()
+        public bool CustomImplementation()
         {
             throw new NotImplementedException();
         }
