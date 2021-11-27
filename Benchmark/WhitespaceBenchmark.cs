@@ -37,14 +37,34 @@ namespace Benchmark
         [Benchmark]
         public string UseWhitespaceStringSpan()
         {
-            return RemoveAdditionalWhiteSpaceSpan
-                .ReplaceWithSingleWhiteSpaceAllocFree(Spaces.ToCharArray()).ToString();
+            var chars = Spaces.ToCharArray();
+            int count = RemoveAdditionalWhiteSpaceSpan.ReplaceWithSingleWhiteSpaceAllocFree(chars);
+            return new string(chars, 0, count);
         }
 
         [Benchmark]
         public string UseCharArray()
         {
             return CharArray.RemoveAdditionalWhiteSpace(Spaces);
+        }
+        
+        [Benchmark]
+        public string SpanStackAlloc()
+        {
+            unsafe
+            {
+                var chars = stackalloc char[Spaces.Length];
+                Span<char> span = new Span<char>(chars, Spaces.Length);
+                Spaces.AsSpan().CopyTo(span);
+                int count = RemoveAdditionalWhiteSpaceSpan.ReplaceWithSingleWhiteSpaceAllocFree(span);
+                return new string(chars, 0, count);
+            }
+        }
+
+        [Benchmark]
+        public string ReadOnlySpanStackAlloc()
+        {
+            return RemoveAdditionalWhiteSpaceSpan.ReadOnlySpanBuffer(Spaces.AsSpan());
         }
     }
 }

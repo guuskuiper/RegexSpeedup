@@ -53,7 +53,7 @@ namespace RegexSpeedup
             return new ReadOnlySpan<char>(buffer, 0, bufferIndex);
         }
 
-        public static Span<char> ReplaceWithSingleWhiteSpaceAllocFree(Span<char> text)
+        public static int ReplaceWithSingleWhiteSpaceAllocFree(Span<char> text)
         {
             bool started = false;
             int bufferIndex = 0;
@@ -100,12 +100,64 @@ namespace RegexSpeedup
                 bufferIndex += count;
             }
 
-            return text.Slice(0, bufferIndex);
+            return bufferIndex;
         }
 
         public static bool IsWhiteSpace(char c)
         {
             return c == ' ' || c == '\t';
+        }
+        
+        public static string ReadOnlySpanBuffer(ReadOnlySpan<char> text)
+        {
+            unsafe
+            {
+                var chars = stackalloc char[text.Length];
+                Span<char> span = new Span<char>(chars, text.Length);
+                int bufferIndex = 0;
+
+                bool started = false;
+                int start = 0;
+                for (int i = 0; i < text.Length; i++)
+                {
+                    if(started)
+                    {
+                        if(IsWhiteSpace(text[i]))
+                        {
+                            started = false;
+                            Add(start, i, text, span);
+                        }
+                    }
+                    else
+                    {
+                        if(!IsWhiteSpace(text[i]))
+                        {
+                            started = true;
+                            start = i;
+                        }
+                    }
+                }
+
+                if(started)
+                {
+                    Add(start, text.Length, text, span);
+                }
+
+                void Add(int s, int e, ReadOnlySpan<char> t, Span<char> d)
+                {
+                    if (bufferIndex > 0)
+                    {
+                        d[bufferIndex] = ' ';
+                        bufferIndex++;
+                    }
+
+                    int count = e - s;
+                    t.Slice(start, count).CopyTo(d.Slice(bufferIndex, count));
+                    bufferIndex += count;
+                }
+
+                return new string(chars, 0, bufferIndex);
+            }
         }
     }
 }

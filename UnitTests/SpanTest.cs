@@ -9,18 +9,9 @@ namespace UnitTests
     {
         protected override string RemoveAdditionalWhiteSpace(string input)
         {
-            return RemoveAdditionalWhiteSpaceSpan.ReplaceWithSingleWhiteSpaceAllocFree(new Span<char>(input.ToCharArray())).ToString();
-        }
-
-        private static readonly string spaces = " a  b   c     d     e      ";
-        private static readonly char[] spacesArray = spaces.ToCharArray();
-        
-        [TestMethod]
-        public void ChangesArray()
-        {
-            RemoveAdditionalWhiteSpaceSpan.ReplaceWithSingleWhiteSpaceAllocFree(spacesArray).ToString();
-            string fromArray = new string(spacesArray);
-            Assert.AreNotEqual(spaces, fromArray);
+            var chars = input.ToCharArray();
+            int count = RemoveAdditionalWhiteSpaceSpan.ReplaceWithSingleWhiteSpaceAllocFree(chars);
+            return new string(chars, 0, count);
         }
     }
 }
