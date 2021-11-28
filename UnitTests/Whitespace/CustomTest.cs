@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RegexSpeedup.Whitespace;
 
 namespace UnitTests.Whitespace
 {
@@ -7,7 +8,7 @@ namespace UnitTests.Whitespace
     {
         protected override string RemoveAdditionalWhiteSpace(string input)
         {
-            return RegexSpeedup.CustomRemoveAdditionalWhiteSpaceRegex.RemoveAdditionalWhiteSpace(input);
+            return CustomRemoveAdditionalWhiteSpaceRegex.RemoveAdditionalWhiteSpace(input);
         }
     }
 }

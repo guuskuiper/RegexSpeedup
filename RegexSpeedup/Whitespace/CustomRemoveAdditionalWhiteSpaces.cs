@@ -1,4 +1,4 @@
-﻿namespace RegexSpeedup
+﻿namespace RegexSpeedup.Whitespace
 {
     public static class CustomRemoveAdditionalWhiteSpaceRegex
     {
@@ -13,7 +13,6 @@
                     var skipped = 0;
                     var l = input.Length;
                     char* p = input_start;
-                    var lastChar = ' ';
                     var lastNonSpace = -1;
                     var lastWasSpace = true;
                     for (var i = 0; i < input.Length; i++, p++)
@@ -30,8 +29,7 @@
                             {
                                 lastNonSpace = pos;
                             }
-                            newChars[pos] = *p;
-                            lastChar = *p;
+                            newChars[pos] = *p != '\t' ? *p : ' ';
                         }
 
                         lastWasSpace = isSpace;

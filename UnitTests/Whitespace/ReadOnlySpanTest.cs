@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RegexSpeedup;
+using RegexSpeedup.Whitespace;
 
 namespace UnitTests.Whitespace
 {

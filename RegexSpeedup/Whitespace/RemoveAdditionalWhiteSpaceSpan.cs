@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RegexSpeedup
+namespace RegexSpeedup.Whitespace
 {
     public static class RemoveAdditionalWhiteSpaceSpan
     { 
