@@ -2,14 +2,14 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RegexSpeedup;
 
-namespace UnitTests
+namespace UnitTests.Whitespace
 {
     [TestClass]
-    public class CharArrayTest : RemoveWhiteSpaceBaseTest
+    public class ReadOnlySpanStackAllocTest : RemoveWhiteSpaceBaseTest
     {
         protected override string RemoveAdditionalWhiteSpace(string input)
         {
-            return CharArray.RemoveAdditionalWhiteSpace(input);
+            return RemoveAdditionalWhiteSpaceSpan.ReadOnlySpanBuffer(input.AsSpan());
         }
     }
 }

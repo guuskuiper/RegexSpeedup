@@ -19,7 +19,8 @@ namespace Benchmark
                 .AddJob(Job.Default.WithRuntime(CoreRuntime.Core50))
                 .AddJob(Job.Default.WithRuntime(ClrRuntime.Net48));
             
-            BenchmarkRunner.Run<WhitespaceBenchmark>(manualConfig);
+            BenchmarkSwitcher.FromAssembly(typeof(Program).Assembly)
+                .Run(args, manualConfig);
         }
     }
 }

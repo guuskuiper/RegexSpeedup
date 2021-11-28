@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace UnitTests
+namespace UnitTests.Whitespace
 {
     [TestClass]
     public class CustomRemoveWhiteSpaceTest : RemoveWhiteSpaceBaseTest
