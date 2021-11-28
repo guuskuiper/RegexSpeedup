@@ -27,5 +27,11 @@ namespace Benchmark
         {
             throw new NotImplementedException();
         }
+        
+        [Benchmark]
+        public bool Span()
+        {
+            return CommandSpan.TryParseCommand(Line, out int lineNumber, out ReadOnlySpan<char> commandSpan, out ReadOnlySpan<char> parametersSpan, out ReadOnlySpan<char> commentSpan);
+        }
     }
 }
