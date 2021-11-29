@@ -54,7 +54,7 @@ namespace RegexSpeedup.Command
         {
             try
             {
-                reader.ParseExpect("#set".AsSpan());
+                reader.ParseExpect("#set ".AsSpan());
                 reader.SkipWhitespaces();
                 command = reader.ParseText();
                 if (command.IsEmpty)

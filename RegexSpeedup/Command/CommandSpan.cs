@@ -52,7 +52,7 @@ namespace RegexSpeedup.Command
 #endif
         }
 
-        private const string SET = "#set";
+        private const string SET = "#set ";
 
         private static bool TryParseACommand(ReadOnlySpan<char> input, out ReadOnlySpan<char> command, out ReadOnlySpan<char> parameters, out ReadOnlySpan<char> remaining)
         {
