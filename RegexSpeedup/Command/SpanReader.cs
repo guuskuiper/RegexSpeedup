@@ -18,13 +18,14 @@ namespace RegexSpeedup.Command
 
         public int ParseInt()
         {
-            int index = _buffer.IndexOf(' ');
+            ReadOnlySpan<char> localBuffer = _buffer;
+            int index = localBuffer.IndexOf(' ');
             if (index < 0)
             {
                 throw new ParseException();
             }
 
-            if (!TryParseInt(_buffer.Slice(0, index), out int value))
+            if (!TryParseInt(localBuffer.Slice(0, index), out int value))
             {
                 throw new ParseException();
             }
@@ -40,10 +41,11 @@ namespace RegexSpeedup.Command
 
         public void SkipWhitespaces()
         {
+            ReadOnlySpan<char> localBuffer = _buffer;
             int index = -1;
-            for (int i = 0; i < _buffer.Length; i++)
+            for (int i = 0; i < localBuffer.Length; i++)
             {
-                if (_buffer[i] != ' ')
+                if (localBuffer[i] != ' ')
                 {
                     index = i - 1;
                     break;
@@ -58,7 +60,8 @@ namespace RegexSpeedup.Command
 
         public void ParseExpect(ReadOnlySpan<char> expected)
         {
-            if (!_buffer.StartsWith(expected))
+            ReadOnlySpan<char> localBuffer = _buffer;
+            if (!localBuffer.StartsWith(expected))
             {
                 throw new ParseException();
             }
@@ -68,7 +71,8 @@ namespace RegexSpeedup.Command
         
         public void ParseExpect(char expected)
         {
-            if (_buffer.IsEmpty || _buffer[0] != expected)
+            ReadOnlySpan<char> localBuffer = _buffer;
+            if (localBuffer.IsEmpty || localBuffer[0] != expected)
             {
                 throw new ParseException();
             }
@@ -78,10 +82,11 @@ namespace RegexSpeedup.Command
 
         public ReadOnlySpan<char> ParseText()
         {
+            ReadOnlySpan<char> localBuffer = _buffer;
             int index = -1;
-            for (int i = 0; i < _buffer.Length; i++)
+            for (int i = 0; i < localBuffer.Length; i++)
             {
-                if (!char.IsLetter(_buffer[i]) && (i > 0 && !char.IsDigit(_buffer[i])))
+                if (!char.IsLetter(localBuffer[i]) && (i > 0 && !char.IsDigit(localBuffer[i])))
                 {
                     index = i;
                     break;
@@ -93,20 +98,21 @@ namespace RegexSpeedup.Command
                 throw new ParseException();
             }
 
-            ReadOnlySpan<char> text = _buffer.Slice(0, index);
+            ReadOnlySpan<char> text = localBuffer.Slice(0, index);
             Advance(index);
             return text;
         }
 
         public ReadOnlySpan<char> ParseUntil(char until)
         {
-            var index = _buffer.IndexOf(until);
+            ReadOnlySpan<char> localBuffer = _buffer;
+            var index = localBuffer.IndexOf(until);
             if (index < 0)
             {
                 throw new ParseException();
             }
 
-            var text = _buffer.Slice(0, index);
+            var text = localBuffer.Slice(0, index);
             Advance(index + 1);
             return text;
         }
