@@ -33,5 +33,11 @@ namespace Benchmark
         {
             return CommandSpan.TryParseCommand(Line, out int lineNumber, out ReadOnlySpan<char> commandSpan, out ReadOnlySpan<char> parametersSpan, out ReadOnlySpan<char> commentSpan);
         }
+        
+        [Benchmark]
+        public bool SpanReader()
+        {
+            return CommandSpanReader.TryParseCommand(Line, out int lineNumber, out ReadOnlySpan<char> commandSpan, out ReadOnlySpan<char> parametersSpan, out ReadOnlySpan<char> commentSpan);
+        }
     }
 }
