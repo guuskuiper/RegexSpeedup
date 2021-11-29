@@ -14,11 +14,9 @@ public abstract class BaseCommandTest
     [TestMethod] public void NegativeLineNumber() => CheckInvalid( "N-1 #set CMD()#");
     [TestMethod] public void FractionalLineNumber() => CheckInvalid( "N1.5 #set CMD()#");
     [TestMethod] public void InvalidParam() => CheckInvalid( "N1 #set CMD(#)#");
-    // TODO: check if the following test are valid / invalid
-    //[TestMethod] public void NoSpacesBeforeSet() => CheckInvalid( "N1#set CMD()#");
-    //[TestMethod] public void NoSpacesBeforeCommand() => CheckInvalid( "N1 #setCMD()#");
-    //[TestMethod] public void LongLineNumber() => CheckInvalid( "N21474836470 #set CMD()#");
-    //[TestMethod] public void LowerCaseN() => CheckInvalid( "n1 #set CMD()#");
+    [TestMethod] public void NoSpacesBeforeSet() => CheckInvalid( "N1#set CMD()#");
+    [TestMethod] public void NoSpacesBeforeCommand() => CheckInvalid( "N1 #setCMD()#");
+    [TestMethod] public void LowerCaseN() => CheckInvalid( "n1 #set CMD()#");
     
     
     [TestMethod] public void EmptyCommand() => CheckValid( 1, "CMD", "", "", "N1 #set CMD()#");
