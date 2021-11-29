@@ -6,7 +6,7 @@ namespace RegexSpeedup.Command
     {
         private static readonly Regex _commandRegex = new Regex(
             @"N(?<lineNum>([0-9]+))" + 
-            @"\s*(\s*#set\s*(?<command>([a-z,A-Z][a-z,A-Z,_,0-9]*))" + 
+            @"\s+(\s*#set\s+(?<command>([a-z,A-Z][a-z,A-Z,_,0-9]*))" + 
             @"\s*\(\s*(?<params>(((\d*(\.\d+)?))R?(\s*;\s*((\d*(\.\d+)?))R?)*)*)\s*\)\s*#)" + 
             @"\s*(?<comment>((;.*$)|(\([^\(^\)]*?\) *))*)$",
             RegexOptions.Compiled);
